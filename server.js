@@ -12,10 +12,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.set("view engine", "ejs");
 
-// app.get("/", function (req, res) {
-//   res.render("index");
-// });
-
 app.get("/", async (req, res) => {
   const list = await Acronym.find({});
   res.render("index", { list: list });
@@ -35,11 +31,15 @@ app.post("/acroynm", async (req, res) => {
 });
 
 app.patch("/:id", async (req, res) => {
-  await Acronym.findByIdAndUpdate(req.params.id, {
-    acronym: req.body.acronym,
-    definition: req.body.definition,
-  });
-  res.redirect("/");
+  if (!req.body.acronym && !req.body.definition) {
+    res.send("please fill all forms");
+  } else {
+    await Acronym.findByIdAndUpdate(req.params.id, {
+      acronym: req.body.acronym,
+      definition: req.body.definition,
+    });
+    res.redirect("/");
+  }
 });
 
 app.delete("/:id", async (req, res) => {
