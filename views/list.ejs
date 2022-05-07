@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Acronym CRUD</title>
+  </head>
+  <body>
+    <h1>Acronym CRUD</h1>
+    <div class="crud-container">
+        <h2>Acronym List</h2>
+        <div class="list">
+          <% list.forEach(acronym =>{ %>
+          <h3><%=acronym.acronym%></h3>
+          <h4><%=acronym.definition%></h4>
+          <% }) %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

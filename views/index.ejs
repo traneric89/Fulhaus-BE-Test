@@ -20,12 +20,23 @@
         </form>
       </div>
       <div class="container">
-        <h2>Acronym List</h2>
-        <form action="/list" method="GET">
-          <label for="list">Get acronyms</label>
-          <button type="submit" id="list-btn">Submit</button>
-        </form>
-        <div class="list"></div>
+        <h2>GET Acronym List</h2>
+        <div class="list">
+          <% list.forEach(acronym =>{ %>
+          <h3>Acronym: <%=acronym.acronym%></h3>
+          <h4>Definition: <%=acronym.definition%></h4>
+          <form action="/<%=acronym.id%>?_method=DELETE" method="POST">
+            <button type="submit">Delete</button>
+          </form>
+          <form action="/<%=acronym.id%>?_method=PATCH" method="POST">
+            <label for="acroynm">Acronym</label>
+            <input type="text" id="acronym" name="acronym" />
+            <label for="definition">Definition</label>
+            <input type="text" id="definition" name="definition" />
+            <button type="submit">Patch</button>
+          </form>
+          <% }) %>
+        </div>
       </div>
     </div>
   </body>

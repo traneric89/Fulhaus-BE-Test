@@ -1,6 +1,10 @@
-document.querySelector(".list");
-document.querySelector("#list-btn");
+let listDiv = document.querySelector(".list");
+let listBtn = document.querySelector("#list-btn");
 
-fetch("http://localhost:3000/list")
-  .then((response) => response.json())
-  .then((json) => console.log(json));
+listBtn.addEventListener("click", () => getList());
+
+const getList = async () => {
+  const res = await fetch("http://localhost:3000/list");
+  const { data } = await res.json();
+  listDiv.innerHTML = data;
+};
