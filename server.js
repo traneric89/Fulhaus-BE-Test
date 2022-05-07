@@ -13,6 +13,16 @@ app.get("/", function (req, res) {
   res.sendFile(__dirname + "/index.html");
 });
 
+app.get("/list", async (req, res) => {
+  const list = await Acronym.find({});
+
+  try {
+    res.send(list);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
 app.post("/acroynm", async (req, res) => {
   let acronym = new Acronym({
     acronym: req.body.acronym,
